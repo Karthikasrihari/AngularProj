@@ -1,0 +1,239 @@
+<!-- NG-ZORRO -->
+<!-- <a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
+  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
+</a> -->
+<div class="mainBox">
+  <p class="header">COMMERCIAL INVOICE</p>
+  <div class="parent">
+    <div class="grid-item div1">
+
+      <span nz-typography>Exporter</span><br>
+      <span><input name="exporter" type="text" /></span>
+    </div>
+    <div class="grid-item div2">
+      <p>Invoice Number &amp; Date</p>
+
+      <p><input name="invoiceNo" type="text" /><br><br><nz-date-picker [(ngModel)]="date"
+          (ngModelChange)="onChange($event)"></nz-date-picker></p>
+    </div>
+    <div class="grid-item div3">
+      <p>Bill of Loading Number</p>
+
+      <p><input name="billOfLoadingNumber" type="text" /></p>
+    </div>
+    <div class="grid-item div4">
+      <p>Referrence</p>
+
+      <p><input name="reference" type="text" /></p>
+    </div>
+    <div class="grid-item div5">
+      <p>Buyer Reference</p>
+
+      <p><input name="buyerReference" type="text" /></p>
+    </div>
+    <div class="grid-item div6">
+      <p>Consignee</p>
+
+      <p><input name="consignee" type="text" /></p>
+    </div>
+    <div class="grid-item div7">
+      <p>Buyer (If not Consignee)</p>
+
+      <p><input name="buyer" type="text" /></p>
+    </div>
+    <div class="grid-item div8">
+      <p>Method Of Dispatch</p>
+
+      <p> <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Method" [(ngModel)]="dispatchMethod">
+          <nz-option nzLabel="Sea" nzValue="sea"></nz-option>
+          <nz-option nzLabel="Air" nzValue="air"></nz-option>
+          <nz-option nzLabel="Courier" nzValue="courier"></nz-option>
+          <nz-option nzLabel="Road" nzValue="road"></nz-option>
+          <nz-option nzLabel="Rail" nzValue="rail"></nz-option>
+        </nz-select></p>
+    </div>
+    <div class="grid-item div9">
+      <p>Type Of Shipment</p>
+    </div>
+    <div class="grid-item div10">
+      <p>Country Of Origin Of Goods</p>
+
+      <p><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Method" [(ngModel)]="goodsOrigin">
+          <nz-option nzLabel="Sea" nzValue="sea"></nz-option>
+          <nz-option nzLabel="Air" nzValue="air"></nz-option>
+          <nz-option nzLabel="Courier" nzValue="courier"></nz-option>
+          <nz-option nzLabel="Road" nzValue="road"></nz-option>
+          <nz-option nzLabel="Rail" nzValue="rail"></nz-option>
+        </nz-select></p>
+    </div>
+    <div class="grid-item div11">
+      <p>Country of Final Destination</p>
+
+      <p><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Method" [(ngModel)]="finalDest">
+          <nz-option nzLabel="Sea" nzValue="sea"></nz-option>
+          <nz-option nzLabel="Air" nzValue="air"></nz-option>
+          <nz-option nzLabel="Courier" nzValue="courier"></nz-option>
+          <nz-option nzLabel="Road" nzValue="road"></nz-option>
+          <nz-option nzLabel="Rail" nzValue="rail"></nz-option>
+        </nz-select></p>
+    </div>
+    <div class="grid-item div12">
+      <p>Vesssel/Aircraft</p>
+
+      <p><input name="vessel" type="text" /></p>
+    </div>
+    <div class="grid-item div13">
+      <p>Voyage No</p>
+
+      <p><input name="voyageNo" type="text" /></p>
+    </div>
+    <div class="grid-item div14">
+      <p>Port Of Loading</p>
+
+      <p><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Method" [(ngModel)]="loadPort">
+          <nz-option nzLabel="Sea" nzValue="sea"></nz-option>
+          <nz-option nzLabel="Air" nzValue="air"></nz-option>
+          <nz-option nzLabel="Courier" nzValue="courier"></nz-option>
+          <nz-option nzLabel="Road" nzValue="road"></nz-option>
+          <nz-option nzLabel="Rail" nzValue="rail"></nz-option>
+        </nz-select></p>
+    </div>
+    <div class="grid-item div15">
+      <p>Date of Departure</p>
+
+      <p><nz-date-picker [(ngModel)]="dateDepart" (ngModelChange)="onChange($event)"></nz-date-picker></p>
+    </div>
+    <div class="grid-item div16">
+      <p>Terms/Method of Payment</p>
+
+      <p><input name="paymentMethod" type="text" /></p>
+    </div>
+    <div class="grid-item div17">
+      <p>Port Of Discharge</p>
+
+      <p><input name="port" type="text" /></p>
+    </div>
+    <div class="grid-item div18">
+      <p>Final Destination</p>
+
+      <p><input name="destination" type="text" /></p>
+    </div>
+    <div class="grid-item div19">
+      <p>Marine Cover Policy No</p>
+
+      <p><input name="policyNo" type="text" /></p>
+    </div>
+    <div class="grid-item div20">
+      <p>Letter Of Credit No</p>
+      <p><input name="creditNo" type="text" /></p>
+    </div>
+
+  </div>
+  <div class="parent1">
+    <div class="grid-item div21">
+      <table id="lineTable" >
+        <tbody>
+          <tr>
+            <th>Product Code</th>
+            <th>Description Of Goals</th>
+            <th>HS Code</th>
+            <th>Unit Quantity</th>
+            <th>Unit Type</th>
+            <th>Price</th>
+            <th>Amount</th>
+          </tr>
+          <tr>
+            <td><input name="productcode" type="text" /></td>
+            <td><input name="description" type="text" /></td>
+            <td><input name="hscode" type="text" /></td>
+            <td><input name="unitquan" type="text" /></td>
+            <td><input name="unitType" type="text" /></td>
+            <td><input name="price" type="text" /></td>
+            <td><label name="vale" type="text">0.00</label></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        <button nz-button [nzSize]="size" nzShape="round" class="addButton" onclick="addRow(lineTable)">
+          <span nz-icon nzType="plus"></span>
+          Add Line
+        </button>
+        <button nz-button [nzSize]="size" nzShape="round" class="addButton">
+          <span nz-icon nzType="import"></span>
+          Import Lines
+        </button>
+    </div>
+    <div class="grid-item div22">
+      <p style="padding-left: 650px;">Consignment Total</p>
+    </div>
+    <div class="grid-item div23">
+      <p>Additional Information</p>
+
+      <p><textarea name="additionalInfo"></textarea></p>
+    </div>
+    <div class="grid-item div24">
+      <p><input name="addCharge" type="text" placeholder="Add additional charges or discounts" style="width: 70%;" />
+        <input name="discountValue" type="text" placeholder="0.00" style="width: 25%;margin-left: 10px;" />
+      </p>
+
+
+      <p><span>
+          <button nz-button [nzSize]="size" nzShape="round" class="addButton">
+            <span nz-icon nzType="plus"></span>
+            Add Line
+          </button>
+          <button nz-button [nzSize]="size" nzShape="round" class="addButton">
+            <span nz-icon nzType="percentage"></span>
+            Add Taxes
+          </button>
+        </span></p>
+    </div>
+    <div class="grid-item div25">
+      <p>Invoice Total (Incoterms 2020)</p>
+
+      <p><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Method" [(ngModel)]="paid" style="width: 20%;">
+          <nz-option nzLabel="Sea" nzValue="sea"></nz-option>
+          <nz-option nzLabel="Air" nzValue="air"></nz-option>
+          <nz-option nzLabel="Courier" nzValue="courier"></nz-option>
+          <nz-option nzLabel="Road" nzValue="road"></nz-option>
+          <nz-option nzLabel="Rail" nzValue="rail"></nz-option>
+        </nz-select>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input name="place" type="text"
+          style="width: 30%;" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<nz-select nzShowSearch nzAllowClear
+          nzPlaceHolder="Select a Method" [(ngModel)]="currency" style="width: 20%;">
+          <nz-option nzLabel="Sea" nzValue="sea"></nz-option>
+          <nz-option nzLabel="Air" nzValue="air"></nz-option>
+          <nz-option nzLabel="Courier" nzValue="courier"></nz-option>
+          <nz-option nzLabel="Road" nzValue="road"></nz-option>
+          <nz-option nzLabel="Rail" nzValue="rail"></nz-option>
+        </nz-select></p>
+    </div>
+    <div class="grid-item div26">
+      <p>Place &amp; Date Of Issue</p>
+
+      <p><input name="placeIssue" type="text" placeholder="Place Of Issue" style="width: 40%;" />&nbsp;&nbsp; &nbsp;
+        &nbsp; &nbsp;<nz-date-picker [(ngModel)]="date1" (ngModelChange)="onChange($event)"
+          style="width: 40%;"></nz-date-picker></p>
+    </div>
+    <div class="grid-item div27">
+      <p>Signatory Company</p>
+
+      <p><input name="sigCompany" placeholder="Signatory Company" type="text" /></p>
+    </div>
+    <div class="grid-item div28">
+      <p>Name Of Authorised Signatory</p>
+
+      <p><input name="firstName" type="text" placeholder="First Name" style="width: 40%;" />&nbsp;&nbsp; &nbsp;
+        &nbsp; &nbsp;<input name="lastName" placeholder="Last Name" type="text" style="width: 40%;" /></p>
+    </div>
+    <div class="grid-item div29">
+      <p>Signature</p>
+
+      <p><textarea name="signature"></textarea></p>
+    </div>
+    <div class="grid-item div30">
+      <p>Bank Details</p>
+
+      <p><textarea name="bankDetails"></textarea></p>
+    </div>
+  </div>
+</div>
