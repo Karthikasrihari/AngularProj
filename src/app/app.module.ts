@@ -15,10 +15,11 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoiceModule } from './invoice/invoice.module';
 import { HeaderComponent } from './invoice/header/header.component';
 import { MainComponent } from './main/main.component';
+
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
       MainComponent
    ],
