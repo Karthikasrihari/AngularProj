@@ -6,209 +6,89 @@
     grid-row-gap: 0px;
     background-color: #2196F3;
 } */
-.mainBox {
-    margin: 10px;
+
+  :host {
+    display: flex;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .app-layout {
+    height: 100vh;
+  }
+  
+  .menu-sidebar {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    background-color: white;
+    /* box-shadow: 2px 0 6px rgba(0, 7, 13, 0.35); */
+  }
+  
+  .header-trigger {
+    height: 64px;
+    padding: 20px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s,padding 0s;
+  }
+  
+  .trigger:hover {
+    color: #1890ff;
+  }
+  
+  .sidebar-logo {
+    position: relative;
+    height: 150px;
+    padding-left: 24px;
+    overflow: hidden;
+    line-height: 30px;
     background: white;
-    border-width: 1px;
-    border-color: black;
-    border-style: ridge;
-}
+    transition: all .3s;
+  }
+  
+  .sidebar-logo img {
+    display: inline-block;
+    height: 100px;
+    width: 200px;
+    vertical-align: middle;
+  }
+  
+  .sidebar-logo address {
+    display: inline-block;
+    /* margin: 0 0 0 20px; */
+    color: #0b0404;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+    vertical-align: middle;
+    padding-left: 900px;
+  }
 
-.header {
-    font-weight: bold;
-    text-align: center;
-    font-size: large;
-    font-style: normal;
-    font-family: Tahoma, Verdana, sans-serif;
-    margin-top: 50px;
-}
-
-.parent {
-   margin-top: 30px;
-   margin-left: 30px;
-   margin-right: 30px;
-    /* margin-top: 60px; */
-    display: grid;
-    /* gap: 1px; */
-    /* background-color: #3e2723; */
-    /* padding: 10px; */
-    border-radius: 10px;
-}
-.parent1 {
-   
-    margin-left: 30px;
-    margin-bottom: 30px;
-    margin-right: 30px;
-    /* margin-top: 60px; */
-    display: grid;
-    /* gap: 1px; */
-   
-    /* padding: 10px; */
-    border-radius: 10px;
-}
-.grid-item {
-    /* background-color:white; */
-    border: 1px solid black;
-    /* text-align: center; */
-    padding: 5px;
-    /* font-size: 30px; */
-    border-width: 0.5px;
-    /* border-color: black; */
-}
-
-.div1 {
-    grid-area: 1 / 1 / 3 / 3;
-
-}
-
-.div2 {
-    grid-area: 1 / 3 / 2 / 4;
-}
-
-.div3 {
-    grid-area: 1 / 4 / 2 / 5;
-}
-
-.div4 {
-    grid-area: 2 / 3 / 3 / 4;
-}
-
-.div5 {
-    grid-area: 2 / 4 / 3 / 5;
-}
-
-.div6 {
-    grid-area: 3 / 1 / 4 / 3;
-}
-
-.div7 {
-    grid-area: 3 / 3 / 4 / 5;
-}
-
-.div8 {
-    grid-area: 4 / 1 / 5 / 2;
-}
-
-.div9 {
-    grid-area: 4 / 2 / 5 / 3;
-}
-
-.div10 {
-    grid-area: 4 / 3 / 5 / 4;
-}
-
-.div11 {
-    grid-area: 4 / 4 / 5 / 5;
-}
-
-.div12 {
-    grid-area: 5 / 1 / 6 / 2;
-}
-
-.div13 {
-    grid-area: 5 / 2 / 6 / 3;
-}
-
-.div14 {
-    grid-area: 6 / 1 / 7 / 2;
-}
-
-.div15 {
-    grid-area: 6 / 2 / 7 / 3;
-}
-
-.div16 {
-    grid-area: 5 / 3 / 7 / 5;
-}
-
-.div17 {
-    grid-area: 7 / 1 / 8 / 2;
-}
-
-.div18 {
-    grid-area: 7 / 2 / 8 / 3;
-}
-
-.div19 {
-    grid-area: 7 / 3 / 8 / 4;
-}
-
-.div20 {
-    grid-area: 7 / 4 / 8 / 5;
-}
-
-.div21 {
-    grid-area: 1 / 1 / 2 / 5;
-}
-
-.div22 {
-    grid-area: 2 / 1 / 3 / 5;
-}
-
-.div23 {
-    grid-area: 3 / 1 / 5 / 3;
-}
-
-.div24 {
-    grid-area: 3 / 3 / 4 / 5;
-}
-
-.div25 {
-    grid-area: 4 / 3 / 5 / 5;
-}
-
-.div26 {
-    grid-area: 5 / 3 / 6 / 5;
-}
-
-.div27 {
-    grid-area: 6 / 3 / 7 / 5;
-}
-
-.div28 {
-    grid-area: 7 / 3 / 8 / 5;
-}
-
-.div29 {
-    grid-area: 8 / 3 / 9 / 5;
-}
-
-.div30 {
-    grid-area: 5 / 1 / 9 / 3;
-}
-
-
-p {
-    font-family: verdana, geneva, sans-serif;
-    margin-left: 10px;
-}
-
-nz-select {
-    width: 80%;
-}
-
-input[type=text],
-textarea,
-nz-date-picker {
-
-    width: 80%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-    /* background: rgb(245,245,245); */
-}
-
-.addButton {
-    margin: 8px;
-    color: blue;
-    background: rgb(161, 205, 243);
-    border-style: none;
-}
-table{
+  
+  nz-header {
+    padding: 0;
     width: 100%;
-    text-align: center;
-}
-th{
-    border: 1px solid black;
-}
+    z-index: 2;
+  }
+  
+  .app-header {
+    position: relative;
+    height: 64px;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  }
+  
+  nz-content {
+    margin: 24px;
+  }
+  
+  .inner-content {
+    /* margin-top: 100px; */
+    /* padding: 600px; */
+    background: #fff;
+    /* height: 100%; */
+  }
+  

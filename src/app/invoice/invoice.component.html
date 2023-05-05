@@ -1,0 +1,261 @@
+<!-- <p>Invoice works!!</p> -->
+<!-- <app-header [address]="'test'"></app-header> -->
+<nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="Go Back"></nz-page-header>
+<app-header></app-header>
+
+<form nz-form [formGroup]="invoiceForm">
+    <div class="mainBox">
+        <p class="header">{{type}}</p>
+        <div class="parent">
+            <div nz-card-grid class="full-width div1">
+                <p>Shipper</p>
+                <span><input nz-input [formControlName]="iPARAMS.shipper" type="text" placeholder="Shipper" /></span>
+            </div>
+            <div nz-card-grid class="full-width div2">
+                <p>Bill of Loading Number</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.billOfLoadingNumber" type="text"
+                        placeholder="Bill of Loading Number" /></p>
+            </div>
+            <div nz-card-grid class="full-width div3">
+                <p>Invoice Number &amp; Date</p>
+                <p><input nz-input [formControlName]="iPARAMS.invoiceNo" type="text"
+                        placeholder="Invoice Number" /><br><br>
+                    <nz-date-picker [formControlName]="iPARAMS.datePicker"></nz-date-picker>
+                </p>
+
+            </div>
+            <div nz-card-grid class="full-width div4">
+                <p>Job No</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.jobno" type="text" placeholder="Job No" /></p>
+            </div>
+            <div nz-card-grid class="full-width div5">
+                <p>Buyer Reference</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.buyerReference" type="text"
+                        placeholder="Buyer Reference" /></p>
+            </div>
+            <div nz-card-grid class="full-width div6">
+                <p>Billing Party</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.billingparty" type="text" placeholder="Billing party" />
+                </p>
+            </div>
+            <div nz-card-grid class="full-width div7">
+                <p>Method Of Dispatch</p>
+
+                <p> <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Method"
+                        [formControlName]="iPARAMS.dispatchMethod" [(ngModel)]="dispatchMethod">
+                        <nz-option nzLabel="Sea" nzValue="sea"></nz-option>
+                        <nz-option nzLabel="Air" nzValue="air"></nz-option>
+                        <nz-option nzLabel="Courier" nzValue="courier"></nz-option>
+                        <nz-option nzLabel="Road" nzValue="road"></nz-option>
+                        <nz-option nzLabel="Rail" nzValue="rail"></nz-option>
+                    </nz-select></p>
+            </div>
+            <div nz-card-grid class="full-width div8">
+                <p>Type Of Shipment</p>
+            </div>
+            <div nz-card-grid class="full-width div9">
+                <p>Country Of Origin Of Goods</p>
+
+                <p>
+                    <nz-select [(ngModel)]="goodsOrigin" [formControlName]="iPARAMS.goodsOrigin" nzShowSearch
+                        nzAllowClear nzPlaceHolder="Orgin Country">
+                        <nz-option *ngFor="let country of listOfCountry" [nzValue]="country"
+                            [nzLabel]="country.country_name"></nz-option>
+                    </nz-select>
+                </p>
+            </div>
+            <div nz-card-grid class="full-width div10">
+                <p>Country of Final Destination</p>
+                <p>
+                    <nz-select [(ngModel)]="finalDest" [formControlName]="iPARAMS.finalDest" nzShowSearch nzAllowClear
+                        nzPlaceHolder="Destination Country">
+                        <nz-option *ngFor="let country of listOfCountry" [nzValue]="country"
+                            [nzLabel]="country.country_name"></nz-option>
+                    </nz-select>
+                </p>
+            </div>
+            <div nz-card-grid class="full-width div11">
+
+                <p>Vesssel/Aircraft</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.vessel" type="text" placeholder="Vesssel/Aircraft" /></p>
+            </div>
+            <div nz-card-grid class="full-width div12">
+                <p>Voyage No</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.voyageNo" type="text" placeholder="Voyage No" /></p>
+            </div>
+            <div nz-card-grid class="full-width div13">
+                <p>Port Of Loading</p>
+
+                <p> <input nz-input [formControlName]="iPARAMS.loadPort" type="text" placeholder="Port Of Loading" />
+                </p>
+            </div>
+            <div nz-card-grid class="full-width div14">
+                <p>Date of Departure</p>
+
+                <p><nz-date-picker [formControlName]="iPARAMS.dateDepart" [(ngModel)]="dateDepart"></nz-date-picker></p>
+            </div>
+            <div nz-card-grid class="full-width div15">
+                <p>Port Of Discharge</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.port" type="text" placeholder="Port Of Discharge" /></p>
+            </div>
+            <div nz-card-grid class="full-width div16">
+                <!-- <p>Terms/Method of Payment</p>
+  
+          <p><input nz-input [formControlName]="iPARAMS.paymentMethod" type="text" placeholder="Terms Of Payment" /></p> -->
+                <p>Final Destination</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.destination" type="text" placeholder="Destination" /></p>
+            </div>
+            <!-- <div class="div17">
+       
+        </div>
+        <div class="div18">
+        
+        </div>
+        <div class="div19">
+         <p>Marine Cover Policy No</p>
+  
+          <p><input nz-input [formControlName]="iPARAMS.policyNo" type="text" placeholder="policy No" /></p>
+        </div>
+        <div class="div20">
+          <p>Letter Of Credit No</p>
+          <p><input nz-input [formControlName]="iPARAMS.creditNo" type="text" placeholder="Credit No" /></p> 
+        </div> -->
+
+        </div>
+        <div class="parent1">
+            <div nz-card-grid class="full-width div21">
+
+                <nz-table nzTemplateMode [nzBordered]="true">
+
+                    <thead>
+                        <tr>
+
+                            <th>Product Code</th>
+                            <th>Description Of Goals</th>
+                            <th>SAC Code</th>
+                            <th>Unit Quantity</th>
+                            <th>Unit Type</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container formArrayName="products">
+                            <ng-container *ngFor="let product of userProducts().controls; let proIndex = index;">
+                                <ng-container [formGroupName]="proIndex">
+                                    <tr>
+                                        <td><input nz-input [formControlName]="iPARAMS.productCode" type="text" /></td>
+                                        <td><input nz-input [formControlName]="iPARAMS.description" type="text" /></td>
+                                        <td><input nz-input [formControlName]="iPARAMS.HSCode" type="text" /></td>
+                                        <td><input nz-input [formControlName]="iPARAMS.unitQuantity" type="text" /></td>
+                                        <td><input nz-input [formControlName]="iPARAMS.unitType" type="text" /></td>
+                                        <td><input nz-input [formControlName]="iPARAMS.price" type="text" /></td>
+                                        <td><input nz-input [formControlName]="iPARAMS.amount" type="text" /></td>
+
+                                        <td>
+                                            <button nz-button [nzSize]="size" nzShape="round" class="addButton"
+                                                (click)="removeProducts(proIndex)">
+                                                <span nz-icon nzType="delete"></span> </button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </tbody>
+                </nz-table>
+
+                <p>
+                    <button nz-button [nzSize]="size" nzShape="round" class="addButton" (click)="addProducts()">
+                        <span nz-icon nzType="plus"></span>
+                        Add Product
+                    </button>
+                    <!-- <button nz-button [nzSize]="size" nzShape="round" class="addButton">
+              <span nz-icon nzType="import"></span>
+              Import Lines
+            </button> -->
+            </div>
+            <div nz-card-grid class="full-width div22">
+                <p style="padding-left: 650px;">Consignment Total</p>
+            </div>
+            <div nz-card-grid class="full-width div23">
+                <p>Additional Information</p>
+
+                <p><textarea [formControlName]="iPARAMS.additionalInfo" placeholder="Additional Information" rows="5"
+                        cols="80"></textarea></p>
+            </div>
+            <div nz-card-grid class="full-width div24">
+                <p>Invoice Total (Incoterms 2020)</p>
+
+                <p><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Method" [(ngModel)]="paid"
+                        [formControlName]="iPARAMS.paid" style="width:175px">
+                        <nz-option nzLabel="PrePaid" nzValue="sea"></nz-option>
+                        <nz-option nzLabel="PostPaid" nzValue="air"></nz-option>
+
+                    </nz-select>
+                    &nbsp; &nbsp; &nbsp;
+                    <input nz-input [formControlName]="iPARAMS.place" type="text" style="width: 35%;"
+                        placeholder="Place" /> &nbsp;
+
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Currency" [formControlName]="iPARAMS.currency"
+                        [(ngModel)]="currency" style="width:175px">
+                        <nz-option nzLabel="USD" nzValue="sea"></nz-option>
+                        <nz-option nzLabel="INR" nzValue="air"></nz-option>
+
+                    </nz-select>
+                </p>
+            </div>
+
+            <div nz-card-grid class="full-width div26">
+                <p>Place &amp; Date Of Issue</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.placeIssue" type="text" placeholder="Place Of Issue"
+                        style="width: 40%;" />&nbsp;&nbsp; &nbsp;
+                    &nbsp; &nbsp;<nz-date-picker [(ngModel)]="date1" [formControlName]="iPARAMS.date1"
+                        style="width: 40%;"></nz-date-picker>
+                </p>
+            </div>
+            <div nz-card-grid class="full-width div27">
+                <p>Signatory Company</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.sigCompany" placeholder="Signatory Company" type="text" />
+                </p>
+            </div>
+            <div nz-card-grid class="full-width div28">
+                <p>Name Of Authorised Signatory</p>
+
+                <p><input nz-input [formControlName]="iPARAMS.firstName" type="text" placeholder="First Name"
+                        style="width: 40%;" />&nbsp;&nbsp;
+                    &nbsp;
+                    &nbsp; &nbsp;<input [formControlName]="iPARAMS.lastName" placeholder="Last Name" type="text"
+                        style="width: 40%;" />
+                </p>
+            </div>
+            <div nz-card-grid class="full-width div29">
+                <p>Signature</p>
+
+                <p><textarea [formControlName]="iPARAMS.signature"></textarea></p>
+            </div>
+            <div nz-card-grid class="full-width div30">
+                <p>Bank Details</p>
+
+                <p><textarea [formControlName]="iPARAMS.bankDetails" placeholder="Bank Details" rows="15"
+                        cols="80"></textarea>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</form>
+<div>
+    <button nz-button style="align-items: center;" [nzType]="'primary'" (click)="submitForm()">Submit the Form</button>
+</div>

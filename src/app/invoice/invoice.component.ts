@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
-import { ProductModel } from './product.model';
-import countryJson from './country.json';
+// import { ProductModel } from './product.model';
+import countryJson from '../country.json';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 interface COUNTRY {
   country_name: string;
 }
@@ -54,13 +55,14 @@ export const IPARAMS = {
   amount: 0,
 }
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-invoice',
+  templateUrl: './invoice.component.html',
+  styleUrls: ['./invoice.component.css']
 })
 
-export class AppComponent implements OnInit {
-
+export class InvoiceComponent implements OnInit {
+  @Input()
+  type?: string;
   title = 'AngularProj';
 
   date = null;
@@ -80,12 +82,16 @@ export class AppComponent implements OnInit {
   invoiceForm!: FormGroup;
   listOfCountry: COUNTRY[] = countryJson;
 
-  // orginCountry = ['Zhejiang', 'Jiangsu'];
-  // destinationCountry = ['Zhejiang', 'Jiangsu'];
-
-  constructor(private fb: FormBuilder, private modal: NzModalService,) { }
-
+  constructor(private fb: FormBuilder, private modal: NzModalService, private route: ActivatedRoute, private router: Router, private location: Location) { }
+  onBack(): void {
+    this.location.back();
+    console.log('onBack');
+  }
   ngOnInit() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.type = params.get('type')!;
+      console.log("get value " + this.type);
+    });
 
     this.invoiceForm = new FormGroup({
       [this.iPARAMS.shipper]: new FormControl(''),
