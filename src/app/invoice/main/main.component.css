@@ -1,0 +1,72 @@
+.cardcover {
+  background: #93cdf6;
+  width: 230px;
+ height: 270px;
+ border-radius: 20px;
+ /* border-color: rgb(24, 113, 238); */
+ border-width: 5px;
+  margin: 10px 10px 8px 6px;
+  
+}
+
+.circle {
+  background: rgb(111, 164, 217);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  /* margin: 70px; */
+  margin: 20px 90px 70px 70px;
+}
+
+.animate__slideInLeft {
+  animation-name: slideInLeft;
+}
+
+.animate__animated {
+  animation-duration: 1s;
+  animation-duration: var(--animate-duration);
+  animation-fill-mode: both;
+}
+.container {
+  width: 250px;
+  min-height: 280px;
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  margin-right: 12px;
+  cursor: pointer;
+  box-shadow: #0000001a 0 10px 50px;
+}
+.child2 {
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+ margin-left: -10px;
+  text-align: center;
+}
+.child3 {
+  width: 250px;
+  position: absolute;
+  bottom: 20%;
+  left: 0%;
+  text-align: center;
+  margin-left: -10px;
+}
+.b-color1 {
+  background-color: #454791;
+  border: 1px solid #dfdfdf;
+  color: #fff;
+  border-radius: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+nz-card:hover{
+  border-radius: 20px;
+  border-color: rgb(24, 113, 238);
+  border-width: 3px ;
+  cursor: pointer;
+  transform: translateY(-7px);
+  box-shadow: 0 5px 20px 0 rgb(33, 101, 212);
+}

@@ -1,0 +1,94 @@
+<div style="margin-top: 50px;">
+  <div nz-row [nzGutter]="[80, 80]">
+    <nz-col nzSpan="2"></nz-col>
+
+    <nz-col nzSpan="20">
+      <div nz-row [nzGutter]="[48, 48]">
+        <nz-col (click)="onImport()" class="animate__slideInLeft animate__animated">
+
+          <nz-card nzHoverable [nzCover]="importTemplate" class="cardcover">
+
+          </nz-card>
+          <ng-template #importTemplate>
+            <img class="circle" />
+            <div class="child2">
+              <h2>Import Invoices</h2>
+            </div>
+            <div class="child3">
+              <button nz-button nzType="default" class="ant-btn b-color1">
+                View List
+                <span nz-icon nzType="arrow-right" nzTheme="outline"></span>
+
+              </button>
+            </div>
+          </ng-template>
+
+        </nz-col>
+
+        <nz-col (click)="onDetension()" class="animate__slideInLeft animate__animated">
+
+          <nz-card nzHoverable [nzCover]="detensionTemplate" class="cardcover">
+
+          </nz-card>
+          <ng-template #detensionTemplate>
+            <img class="circle" />
+            <div class="child2">
+              <h2>Detension Invoices</h2>
+            </div>
+            <div class="child3">
+              <button nz-button nzType="default" class="ant-btn b-color1">
+                View List
+                <span nz-icon nzType="arrow-right" nzTheme="outline"></span>
+
+              </button>
+            </div>
+          </ng-template>
+
+        </nz-col>
+        <nz-col (click)="onExportfreight()" class="animate__slideInLeft animate__animated">
+
+          <nz-card nzHoverable [nzCover]="exportTemplate" class="cardcover">
+
+          </nz-card>
+          <ng-template #exportTemplate>
+            <img class="circle" />
+            <div class="child2">
+              <h2>Export Freight Invoices</h2>
+            </div>
+            <div class="child3">
+              <button nz-button nzType="default" class="ant-btn b-color1">
+                View List
+                <span nz-icon nzType="arrow-right" nzTheme="outline"></span>
+
+              </button>
+            </div>
+          </ng-template>
+
+        </nz-col>
+        <nz-col (click)="onDamage()" class="animate__slideInLeft animate__animated">
+
+          <nz-card nzHoverable [nzCover]="damageTemplate" class="cardcover">
+
+          </nz-card>
+          <ng-template #damageTemplate>
+            <img class="circle" />
+            <div class="child2">
+              <h2>Damage Invoices</h2>
+            </div>
+            <div class="child3">
+              <button nz-button nzType="default" class="ant-btn b-color1">
+                View List
+                <span nz-icon nzType="arrow-right" nzTheme="outline"></span>
+
+              </button>
+            </div>
+          </ng-template>
+
+        </nz-col>
+      </div>
+    </nz-col>
+
+    <nz-col nzSpan="2"></nz-col>
+  </div>
+
+</div>

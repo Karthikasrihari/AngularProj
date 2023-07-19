@@ -1,3 +1,11 @@
 .address {
-    padding-left: 400px;
+    padding-left: 300px;
+   
+}
+.border{
+    background: white;
+    border-width: 1px;
+    border-color: black;
+    border-style: ridge;
+    width: 100%;
 }

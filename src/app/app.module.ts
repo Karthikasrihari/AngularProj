@@ -12,29 +12,31 @@ import { AntproviderModule } from '/Users/karthikasrihari/AngularProj/Antprovide
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { InvoiceComponent } from './invoice/invoice.component';
-import { InvoiceModule } from './invoice/invoice.module';
+
 import { HeaderComponent } from './invoice/header/header.component';
-import { MainComponent } from './main/main.component';
+import { MainComponent } from './invoice/main/main.component';
+
+import {InvoiceListComponent} from './invoice/invoiceList/invoiceList.component'
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [		
+  declarations: [	
     AppComponent,
-      MainComponent
+    MainComponent,
+    HeaderComponent,
+    InvoiceListComponent,
+    InvoiceComponent,
+      SidebarComponent,
+     
    ],
   imports: [
     BrowserModule,
-    // RouterModule.forRoot([
-    //   {path: 'invoice', component: InvoiceComponent},
-     
-    //   {path: '', redirectTo: '/invoice', pathMatch: 'full'},
-    // ]),
-    // InvoiceModule,
     AppRoutingModule,
-   AntproviderModule,
-   HttpClientModule,
-   BrowserAnimationsModule,
+    AntproviderModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

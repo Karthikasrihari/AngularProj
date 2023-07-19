@@ -1,11 +1,30 @@
-<nz-layout>
-  
-<div>
-  
-</div>
-  <nz-content>
-    <div class="inner-content">
-      <router-outlet></router-outlet>
+<nz-layout class="app-layout" *ngIf="blankUrl || !isCheckoutRoute();else other_content">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="200px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a>
+        <img src="assets/images/ic_logo1.png" alt="logo">
+
+      </a>
     </div>
-  </nz-content>
+    <ul nz-menu nzMode="inline" nzTheme="light" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Invoices' : ''"
+        nzSelected>
+        <span nz-icon nzType="file"></span>
+        <span routerLink="/main">Invoices</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
 </nz-layout>
+
+<ng-template #other_content>
+  
+  <app-invoice></app-invoice>
+</ng-template>

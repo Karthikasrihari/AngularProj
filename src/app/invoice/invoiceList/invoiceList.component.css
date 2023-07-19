@@ -1,0 +1,47 @@
+nz-button-group {
+  margin: 0 8px 8px 0;
+}
+.flex {
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+}
+.preview {
+  /* max-width: 200px;
+  max-height: 200px; */
+  margin-top: 20px;
+  margin-left: 60px;
+  width: 200px;
+  height: 100px;
+  display: block;
+ 
+}
+/* 
+img{
+  border: 0; 
+} */
+
+input[type=text],
+input[type=number],
+nz-date-picker,
+textarea,
+nz-input-group {
+    border: none;
+    border-radius: 7px;
+    background: rgba(3, 27, 78, .07);
+
+}
+.ant-form-item {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  margin-bottom: 10px;
+  vertical-align: top;
+  transition: margin-bottom 0.3s 0.017s linear;
+  }

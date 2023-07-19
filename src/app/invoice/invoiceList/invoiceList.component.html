@@ -1,0 +1,302 @@
+<nz-page-header class="site-page-header" nzBackIcon>
+    <nz-page-header-title>List of {{type}} Invoices</nz-page-header-title>
+</nz-page-header>
+<nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large"
+    style="border: none;border-radius: 9px; background: rgba(3,27,78,.07);width: 250px; margin-left: 20px;">
+    <input type="text" nz-input placeholder="Search Invoices" style="background:transparent" [(ngModel)]="searchKey"
+        (ngModelChange)="onSearch()" />
+</nz-input-group>
+<ng-template #suffixIconSearch>
+    <span nz-icon nzType="search"></span>
+</ng-template>
+<br />
+<br />
+
+<div nz-row>
+    <div nz-col nzSpan="6">
+        <button nz-button nz-dropdown [nzDropdownMenu]="menu4"
+            style="margin-left: 20px; font-weight: bold; border-radius: 9px;">
+            Show All
+            <span nz-icon nzType="down" style="font-size: 12px;"></span>
+        </button>
+        <nz-dropdown-menu #menu4="nzDropdownMenu" style="margin-left: 20px;">
+            <ul nz-menu nzMode="inline"
+                style="width: 240px;border-width: 5px;border-radius: 8px; border-color: rgb(98, 96, 96);">
+                <li nz-menu-item style="padding: 10px;" (click)="allFilter()">All</li>
+                <!-- <li nz-menu-item style="padding: 10px;">Accepted</li> -->
+                <li nz-menu-item style="padding: 10px;" (click)="draftFilter()">Draft</li>
+                <li nz-menu-item style="padding: 10px;" (click)="invoiceFilter()">Invoiced</li>
+                <li nz-menu-item style="padding: 10px;" (click)="paidFilter()">Paid</li>
+                <li nz-menu-item style="padding: 10px;" (click)="partiallyFilter()">Partially paid</li>
+                <li nz-menu-item style="padding: 10px;">Sent</li>
+                <!-- <li nz-menu-item style="padding: 10px;">Viewed</li> -->
+            </ul>
+        </nz-dropdown-menu>
+    </div>
+    <div nz-col nzSpan="18" *ngIf="visible">
+        <nz-space style="float: right; margin-right: 25px;">
+            <button *nzSpaceItem nz-button nzType="primary" (click)="edit()" style="border-radius: 9px;">
+                <span nz-icon nzType="edit"></span>
+                Edit
+            </button>
+            <button *nzSpaceItem nz-button nzType="default" (click)="companyStamp()" style="border-radius: 9px;">
+                <i nz-icon>
+                    <img src="assets/images/stamp.svg" style="max-width: 20px;padding-bottom: 3px;
+                    max-height: 20px;">
+                </i>
+                <span>
+                    Stamp
+                </span>
+            </button>
+            <button *nzSpaceItem nz-button nzType="default" (click)="showMail()" style="border-radius: 9px;">
+                <span nz-icon nzType="send"></span>
+                Send
+            </button>
+            <button *nzSpaceItem nz-button nzType="default" (click)="downloadCsv()" style="border-radius: 9px;">
+                <span nz-icon nzType="file-excel" nzTheme="outline"></span>
+                CSV
+            </button>
+            <button *nzSpaceItem nz-button nzType="default" nz-tooltip nzTooltipTitle="Open" (click)="open()" style="border-radius: 9px;">
+                <span nz-icon nzType="file-pdf"></span>
+
+            </button>
+            <button *nzSpaceItem nz-button nzType="default" nz-tooltip nzTooltipTitle="Download" (click)="download()" style="border-radius: 9px;">
+                <span nz-icon nzType="download"></span>
+
+            </button>
+            <button *nzSpaceItem nz-button nzType="default" nz-tooltip nzTooltipTitle="Print" (click)="download()" style="border-radius: 9px;">
+                <span nz-icon nzType="printer" nzTheme="outline"></span>
+
+            </button>
+        </nz-space>
+
+    </div>
+    <div nz-col nzSpan="12" *ngIf="visibleSend">
+
+        <button nz-button nzType="default" (click)="showMail()" style="margin-left: 420px;border-radius: 9px;">
+            <span nz-icon nzType="send"></span>
+            Send
+        </button>
+    </div>
+
+</div>
+
+
+<nz-table #basicTable [nzData]="listOfData" [nzSimple]="true" nzShowSizeChanger
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" style="margin: 20px;table-layout: auto;" nzSize="small">
+    <thead>
+        <tr>
+            <th [(nzChecked)]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+            <th>Invoice No</th>
+            <th>buyer</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Owing</th>
+            <th>Invoice Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+            <td><a routerLink="/invoice" [queryParams]="{type: this.type, id: data.id }" routerLinkActive="active">{{
+                    data.invoiceNo }}</a></td>
+            <td>
+                {{ data.buyer }}
+            </td>
+            <td>
+                <div [ngSwitch]="data.status">
+                    <div *ngSwitchCase="'PAID'"><nz-tag [nzColor]="'green'" style="border-radius: 9px;">{{ data.status
+                            }}</nz-tag></div>
+                    <div *ngSwitchCase="'PARTIALLY PAID'"><nz-tag [nzColor]="'purple'" style="border-radius: 9px;">{{
+                            data.status
+                            }}</nz-tag></div>
+                    <div *ngSwitchCase="'DRAFT'"><nz-tag [nzColor]="'blue'" style="border-radius: 9px;">{{ data.status
+                            }}</nz-tag></div>
+                </div>
+            </td>
+            <td>{{ data.amount | number:'0.2-2'}}</td>
+            <td>{{ data.owing | number:'0.2-2'}}</td>
+            <td>{{ data.date | date:'MM-dd-yyyy'}}
+                <button nz-icon nzType="ellipsis" nz-popover [nzPopoverContent]="contentTemplate"
+                    nzPopoverPlacement="bottom" [nzPopoverArrowPointAtCenter]="true" style="margin-left: 50px;">
+                </button>
+                <ng-template #contentTemplate>
+                    <div style="width:200px; ">
+                        <button nz-button [nzSize]="size" nzType="text" (click)="editInvoice(data.id)"
+                            style="margin: 10px;">
+                            <span nz-icon nzType="edit"></span>
+                            Edit
+                        </button><br>
+                        <button nz-button [nzSize]="size" nzType="text" style="margin: 9px;" (click)="companyStamp()">
+                            <i nz-icon>
+                                <img src="assets/images/stamp.svg" style="max-width: 18px;
+                                max-height: 20px;">
+                            </i>
+                            <span>
+                                Add Company Seal
+                            </span>
+
+                        </button><br>
+                        <button nz-button [nzSize]="size" nzType="text" style="margin: 10px;" (click)="showMail()">
+                            <span nz-icon nzType="send"></span>
+                            Send
+                        </button><br>
+                        <button nz-button [nzSize]="size" nzType="text" style="margin: 10px;"
+                            (click)="openInvoice(data.id)">
+                            <span nz-icon nzType="file-pdf"></span>
+                            Open Invoice
+                        </button><br>
+                        <button nz-button [nzSize]="size" nzType="text" style="margin: 10px;"
+                            (click)="downloadInvoice(data.id)">
+                            <span nz-icon nzType="download"></span>
+                            Download Invoice
+                        </button><br>
+
+                        <button nz-button [nzSize]="size" nzType="text" style="margin: 10px;" (click)="downloadCsv()">
+                            <span nz-icon nzType="file-excel" nzTheme="outline"></span>
+                            Download as CSV
+                        </button><br>
+                        <button nz-button [nzSize]="size" nzType="text" style="margin: 10px;"
+                            (click)="printInvoice(data.id)">
+                            <span nz-icon nzType="printer" nzTheme="outline"></span>
+                            Print
+                        </button><br>
+                    </div>
+                </ng-template>
+            </td>
+
+        </tr>
+    </tbody>
+
+</nz-table>
+
+
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()" [nzWidth]="'60%'">
+    <ng-template #modalTitle>Add Company Seal</ng-template>
+
+    <ng-template #modalContent>
+        <div class="flex">
+            <div style="margin: 0.5rem;flex: 1;flex-direction: column; height: 400px;width: 100px;">
+                <!-- <label>Upload Seal
+                    <input type="file" accept="image/png" (change)="selectFile($event)" />
+                </label> -->
+                <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'" style="width:100%">
+                    <nz-form-item>
+                        <!-- <nz-form-label>Upload Seal</nz-form-label> -->
+                        <nz-form-control>
+                            <!-- <input type="file" accept="image/png" (change)="selectFile($event)" /> -->
+                            <input type="file" style="display: none" (change)="selectFile($event)" #UploadFileInput
+                                multiple="false">
+                            <button nz-button nzType="default" class="green-btn"
+                                (click)="UploadFileInput.click();">Upload Seal<i nz-icon nzType="upload"></i></button>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label>Company Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" placeholder="Company Name" formControlName="companyName" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label>Business Registeration Number</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" placeholder="Register Number"
+                                formControlName="registerNumber" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <!-- <nz-form-label>Upload Signature</nz-form-label> -->
+                        <nz-form-control>
+                            <!-- <input type="file" accept="image/png" (change)="selectSign($event)" /> -->
+                            <input type="file" style="display: none" (change)="selectSign($event)" #UploadSignInput
+                                multiple="false">
+                            <button nz-button nzType="default" class="green-btn"
+                                (click)="UploadSignInput.click();">Upload Signature<i nz-icon
+                                    nzType="upload"></i></button>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label>Full Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" placeholder="Full Name" formControlName="signName"
+                                (ngModelChange)="displayName()" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label>Date</nz-form-label>
+                        <nz-form-control>
+                            <nz-date-picker placeholder="Invoice Date" style="width: 100%;" formControlName="signDate"
+                                (ngModelChange)="displayDate()" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </div>
+            <div
+                style="margin: 0.5rem;flex: 1;flex-direction: column; height: 350px;width: 80px;border: 1px solid #ccc;border-radius: 10px;">
+                <h4 nz-typography style="margin: 10px;">PREVIEW</h4>
+
+                <img [src]="preview" class="preview" alt="company seal" />
+                <img [src]="previewSign" class="preview" alt="Signature" />
+                <input [(ngModel)]="stampName" readonly placeholder="Name"
+                    style="border:0;color: #031b4e;font-weight: 700;width: 130px;margin-left: 50px;" /><br>
+                <input [(ngModel)]="stampDate" readonly placeholder="Date"
+                    style="border:0;color: #031b4e;font-weight: 700;width: 130px;margin-left: 50px;" />
+            </div>
+        </div>
+
+    </ng-template>
+    <ng-template #modalFooter>
+
+        <button nz-button nzType="default" (click)="handleCancel()" style="border-radius: 9px;">Cancel</button>
+        <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading"
+            style="border-radius: 9px;">Add</button>
+    </ng-template>
+</nz-modal>
+
+
+
+<nz-modal [nzVisible]="isShowMail" nzTitle="Email" (nzOnCancel)="onCancelMail()"
+    [nzStyle]="{ top: '20px', width: '60%' }" [nzMaskClosable]="false">
+    <ng-container *nzModalContent>
+        <nz-card>
+            <nz-alert nzType="warning" nzCloseable
+                nzMessage="Ensure after adding a new e-mail address, Press 'Enter' key to recognize the email account.">
+            </nz-alert>
+            <form nz-form [formGroup]="mailForm" [nzLayout]="'vertical'">
+                <nz-row [nzGutter]="[8, 8]">
+                    <nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-label>To</nz-form-label>
+                            <nz-form-control nzErrorTip="At least one email is required">
+                                <tag-input [formControlName]="M_PARAMS.toEmails" [validators]="validators"
+                                    [errorMessages]="errorMessages" [editable]='true' placeholder=""
+                                    secondaryPlaceholder="Add emails...">
+                                </tag-input>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-label>Subject</nz-form-label>
+                            <nz-form-control nzErrorTip="Subject is required">
+                                <input nz-input placeholder="Subject..." [formControlName]="M_PARAMS.subject" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Empty message body">
+                                <angular-editor [formControlName]="M_PARAMS.content" [config]="config"></angular-editor>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                </nz-row>
+            </form>
+        </nz-card>
+    </ng-container>
+    <ng-container *nzModalFooter>
+        <button nz-button nzType="default" [nzLoading]="isLoading" (click)="onCancelMail()">Cancel</button>
+        <button nz-button nzType="primary" [nzLoading]="isLoading" (click)="onSendMail()">Send</button>
+    </ng-container>
+</nz-modal>

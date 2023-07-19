@@ -74,7 +74,7 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
 import { NzGraphModule } from 'ng-zorro-antd/graph';
 import { NzCronExpressionModule } from 'ng-zorro-antd/cron-expression';
-
+import { NzQRCodeModule } from 'ng-zorro-antd/qr-code';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -160,6 +160,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NzPipesModule,
     NzCodeEditorModule,
     NzGraphModule,
+    NzQRCodeModule
    
   ],
 })

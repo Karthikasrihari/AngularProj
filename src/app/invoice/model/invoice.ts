@@ -1,0 +1,60 @@
+
+
+export interface Invoice {
+    id: number,
+    irn: string,
+    ackNo: string,
+    ackDate: string,
+    to:
+    {
+        name: string,
+        addr: string,
+    },
+    gst: string,
+    invoiceNo: string,
+    invoiceDate: string,
+    jobNo: string,
+    consign: string,
+    billNo: string,
+    pan: string,
+    container: string,
+    salesman: string,
+    commodity: string,
+    packWeig: string,
+    sbNo: string,
+    vessel: string,
+    exRate: string,
+    stuffPlace: string,
+    products: Product[],
+    sac: number,
+    taxV: number,
+    ctRate: number,
+    ctAmount: number,
+    stRate: number,
+    stAmount: number,
+    itRate: number,
+    itAmount: number,
+    taxAmounnt: number,
+    subTotal: number,
+    beneficiary: string,
+    status: string,
+
+}
+export interface Product {
+
+    sNo: number,
+    particulars: string,
+    sacCode: number,
+    gst: number,
+    quantity: number,
+    rate: number,
+    amount: number,
+    cgstp: number,
+    cgst: number,
+    sgstp: number,
+    sgst: number,
+    igstp: number,
+    igst: number,
+    totalp: number,
+
+}
